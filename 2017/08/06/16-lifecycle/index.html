@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="生命周期函数首次加载时触发的生命周期12345678910111213141516171819class App extends React.Component&amp;#123;	constructor()&amp;#123;		super()		console.log(&apos;constructor&apos;)	&amp;#125;	componentWillMount()&amp;#123;		console.log(&apos;will Mo">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生命周期函数">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/16-lifecycle/index.html">
+<meta property="og:site_name" content="小u Notes">
+<meta property="og:description" content="生命周期函数首次加载时触发的生命周期12345678910111213141516171819class App extends React.Component&amp;#123;	constructor()&amp;#123;		super()		console.log(&apos;constructor&apos;)	&amp;#125;	componentWillMount()&amp;#123;		console.log(&apos;will Mo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-06T15:29:50.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="生命周期函数">
+<meta name="twitter:description" content="生命周期函数首次加载时触发的生命周期12345678910111213141516171819class App extends React.Component&amp;#123;	constructor()&amp;#123;		super()		console.log(&apos;constructor&apos;)	&amp;#125;	componentWillMount()&amp;#123;		console.log(&apos;will Mo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/06/16-lifecycle/"/>
+
+
+
+
+
+  <title>生命周期函数 | 小u Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小u Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/16-lifecycle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小u">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小u Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">生命周期函数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T15:32:11+00:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- toc -->
+<h1 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h1><h2 id="首次加载时触发的生命周期"><a href="#首次加载时触发的生命周期" class="headerlink" title="首次加载时触发的生命周期"></a>首次加载时触发的生命周期</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">	<span class="keyword">constructor</span>()&#123;</div><div class="line">		<span class="keyword">super</span>()</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'constructor'</span>)</div><div class="line">	&#125;</div><div class="line">	componentWillMount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'will Mount'</span>)</div><div class="line">	&#125;</div><div class="line">	componentDidMount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'did Mount'</span>)</div><div class="line">	&#125;</div><div class="line">	render()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'render'</span>)</div><div class="line">		<span class="keyword">return</span>(</div><div class="line">			&lt;div&gt;App/div&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> App</div></pre></td></tr></table></figure>
+<p><strong>constructor</strong>（自带的默认方法传递<code>state</code>和<code>props</code>）</p>
+<ul>
+<li>构造函数，只有初始化时调用载一次</li>
+</ul>
+<p><strong>comonentWillMount</strong> 挂载前</p>
+<ul>
+<li>在组件挂载之前调用一次。如果在这个函数里面调用<code>setState</code>，本次的<code>render</code>函数可以看到更新后的<code>state</code>，并且只渲染一次。</li>
+</ul>
+<p><strong>render</strong> 挂载（必须）</p>
+<ul>
+<li>返回值必须是一个React的<code>element</code>（JSX节点），不能在<code>render</code>内修改<code>state</code></li>
+</ul>
+<p><strong>comonentDidMount</strong> 挂载完成后</p>
+<ul>
+<li>在组件挂载之后调用一次。这个时候，子主键也都挂载好了，可以在这里使用<code>refs</code>。</li>
+</ul>
+<h2 id="更新阶段（重新渲染）"><a href="#更新阶段（重新渲染）" class="headerlink" title="更新阶段（重新渲染）"></a>更新阶段（重新渲染）</h2><p><code>state</code>被<code>setState</code>修改或 props 被修改会触发更新</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">	<span class="keyword">constructor</span>()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'constructor'</span>)</div><div class="line">		<span class="keyword">super</span>()</div><div class="line">		<span class="keyword">this</span>.state=(&#123;</div><div class="line">			num:<span class="number">0</span></div><div class="line">		&#125;)  </div><div class="line">	&#125;</div><div class="line">	componentWillMount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'will Mount'</span>)</div><div class="line">	&#125;</div><div class="line">	componentDidMount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'did Mount'</span>)</div><div class="line">	&#125;</div><div class="line">	shouldComponentUpdate(nextProps,nextState)&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'should Update'</span>,nextProps,nextState)</div><div class="line">		<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">	&#125;</div><div class="line">	componentWillUpdate()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'will Update'</span>)</div><div class="line">	&#125;</div><div class="line">	componentDidUpdate()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'did Update'</span>)</div><div class="line">	&#125;</div><div class="line">	render()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'render'</span>)</div><div class="line">		<span class="keyword">return</span>(</div><div class="line">			&lt;div&gt;</div><div class="line">				&lt;p&gt;&#123;<span class="keyword">this</span>.state.num&#125;&lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp">				&lt;button onClick=&#123;() =&gt; this.setState(&#123;num:++this.state.num&#125;)&#125;&gt;+1&lt;/</span>button&gt;</div><div class="line">			&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">		)</span></div><div class="line"><span class="regexp">	&#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp">export default App</span></div></pre></td></tr></table></figure>
+<p><strong>shouldComponentUpdate</strong> （判断是否需要重新渲染组件）</p>
+<ul>
+<li>必须有返回值（返回值为一个bool值）如果返回<code>true</code>重新<code>render</code>（渲染）。</li>
+<li><code>shouleComponentUpdata(nextProps,nextState)</code>的两个参数（形参）</li>
+</ul>
+<p><strong>componentWillUpdate</strong> （重新渲染前）</p>
+<ul>
+<li><code>shouldComponentUpdate</code>返回<code>true</code>或者调用<code>forceUpdate</code>之后，<code>componentWillUpdate</code>会被调用。</li>
+<li>除了首次<code>render</code>之后调用<code>componentWillMount</code>，其它<code>render</code>结束之后都是调用<code>componentWillUpdate</code>。</li>
+</ul>
+<p><strong>render</strong>（渲染）</p>
+<p><strong>componentDidUpdate</strong>（渲染完成后）</p>
+<ul>
+<li>除了首次<code>render</code>之后调用<code>componentDidMount</code>，其它<code>render</code>结束之后都是调用<code>componentDidUpdate</code>。</li>
+</ul>
+<h2 id="子组件的生命周期流程"><a href="#子组件的生命周期流程" class="headerlink" title="子组件的生命周期流程"></a>子组件的生命周期流程</h2><h3 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">	<span class="keyword">constructor</span>()&#123;</div><div class="line">		<span class="keyword">super</span>()</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test constructor'</span>)</div><div class="line">	&#125;</div><div class="line">	componentWillMount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test will Mount'</span>)</div><div class="line">	&#125;</div><div class="line">	componentDidMount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test did Mount'</span>)</div><div class="line">	&#125;</div><div class="line">	shouldComponentUpdate(nextProps,nextState)&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test should'</span>)</div><div class="line">		<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">	&#125;</div><div class="line">	componentWillUpdate()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test Update'</span>)</div><div class="line">	&#125;</div><div class="line">	componentDidUpdate()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test did Update'</span>)</div><div class="line">	&#125;</div><div class="line">	render()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'text render'</span>)</div><div class="line">		<span class="keyword">return</span> (</div><div class="line">			&lt;div className=<span class="string">'Test'</span>&gt;  </div><div class="line">				&lt;span&gt;&#123;<span class="keyword">this</span>.props.num&#125;&lt;<span class="regexp">/span&gt;</span></div><div class="line"><span class="regexp">			&lt;/</span>div&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Test</div></pre></td></tr></table></figure>
+<h3 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> Test <span class="keyword">from</span> <span class="string">'./Test'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">	<span class="keyword">constructor</span>()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'constructor'</span>)</div><div class="line">		<span class="keyword">super</span>()</div><div class="line">		<span class="keyword">this</span>.state = (&#123;</div><div class="line">			num:<span class="number">0</span></div><div class="line">		&#125;)  </div><div class="line">	&#125;</div><div class="line">	componentWillMount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'will Mount'</span>)</div><div class="line">	&#125;</div><div class="line">	componentDidMount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'did Mount'</span>)</div><div class="line">	&#125;</div><div class="line">	componentWillReceiveProps(nextProps)&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'ReceiveProps'</span>,nextProps)</div><div class="line">	&#125;</div><div class="line">	shouldComponentUpdate(nextProps,nextState)&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'should'</span>,nextProps,nextState.num)</div><div class="line">		<span class="keyword">if</span>(nextState.num&gt;<span class="number">10</span>)&#123;</div><div class="line">			alert(<span class="string">'超过上限'</span>)</div><div class="line">			<span class="keyword">this</span>.btn.disabled = <span class="literal">true</span></div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	componentWillUpdate()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'Update'</span>)</div><div class="line">	&#125;</div><div class="line">	componentDidUpdate()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'did Update'</span>)</div><div class="line">	&#125;</div><div class="line">	render()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'render'</span>)</div><div class="line">		<span class="keyword">return</span>(</div><div class="line">			&lt;div&gt;</div><div class="line">				&lt;Test num=&#123;<span class="keyword">this</span>.state.num&#125; /&gt;</div><div class="line">				&lt;input type=<span class="string">'button'</span> value=<span class="string">'+1'</span> ref=&#123;btn =&gt; <span class="keyword">this</span>.btn = btn&#125; onClick=&#123;() =&gt; <span class="keyword">this</span>.setState(&#123;<span class="attr">num</span>:++<span class="keyword">this</span>.state.num&#125;)&#125; /&gt;</div><div class="line">			&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">		)</span></div><div class="line"><span class="regexp">	&#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp">export default App</span></div></pre></td></tr></table></figure>
+<p><strong>componentWillReceiveProps</strong>（props改变时触发）</p>
+<ul>
+<li><code>props</code>是父组件传递给子组件的。父组件发生<code>render</code>的时候子组件就会调用<code>componentWillReceiveProps</code>（不管<code>props</code>有没有更新，也不管父子组件之间有没有数据交换）。</li>
+</ul>
+<h2 id="销毁组件"><a href="#销毁组件" class="headerlink" title="销毁组件"></a>销毁组件</h2><h3 id="子组件（要销毁的组件）"><a href="#子组件（要销毁的组件）" class="headerlink" title="子组件（要销毁的组件）"></a>子组件（要销毁的组件）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">	<span class="keyword">constructor</span>()&#123;</div><div class="line">		<span class="keyword">super</span>()</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test constructor'</span>)</div><div class="line">	&#125;</div><div class="line">	componentWillMount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test will Mount'</span>)</div><div class="line">	&#125;</div><div class="line">	componentDidMount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test did Mount'</span>)</div><div class="line">	&#125;</div><div class="line">	shouldComponentUpdate(nextProps,nextState)&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test should'</span>)</div><div class="line">		<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">	&#125;</div><div class="line">	componentWillUpdate()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test Update'</span>)</div><div class="line">	&#125;</div><div class="line">	componentDidUpdate()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test did Update'</span>)</div><div class="line">	&#125;</div><div class="line">	componentWillUnmount()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'test Un'</span>)</div><div class="line">	&#125;</div><div class="line">	render()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'text render'</span>)</div><div class="line">		<span class="keyword">return</span> (</div><div class="line">			&lt;div className=<span class="string">'Test'</span>&gt;  </div><div class="line">				&lt;span&gt;&#123;<span class="keyword">this</span>.props.num&#125;&lt;<span class="regexp">/span&gt;</span></div><div class="line"><span class="regexp">			&lt;/</span>div&gt;</div><div class="line">		)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> Test</div></pre></td></tr></table></figure>
+<h3 id="父组件-1"><a href="#父组件-1" class="headerlink" title="父组件"></a>父组件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> Test <span class="keyword">from</span> <span class="string">'./Test'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">		<span class="keyword">constructor</span>()&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">'constructor'</span>)</div><div class="line">			<span class="keyword">super</span>()</div><div class="line">			<span class="keyword">this</span>.state = (&#123;</div><div class="line">				num:<span class="number">0</span>,</div><div class="line">				show:<span class="literal">true</span></div><div class="line">			&#125;)  </div><div class="line">		&#125;</div><div class="line">		componentWillMount()&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">'will Mount'</span>)</div><div class="line">		&#125;</div><div class="line">		componentDidMount()&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">'did Mount'</span>)</div><div class="line">		&#125;</div><div class="line">		componentWillReceiveProps(nextProps)&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">'ReceiveProps'</span>,nextProps)</div><div class="line">		&#125;</div><div class="line">		shouldComponentUpdate(nextProps,nextState)&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">'should'</span>,nextProps,nextState.num)</div><div class="line">			<span class="keyword">if</span>(nextState.num&gt;<span class="number">10</span>)&#123;</div><div class="line">				alert(<span class="string">'超过上限'</span>)</div><div class="line">				<span class="keyword">this</span>.btn.disabled = <span class="literal">true</span></div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		componentWillUpdate()&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">'Update'</span>)</div><div class="line">		&#125;</div><div class="line">		componentDidUpdate()&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">'did Update'</span>)</div><div class="line">		&#125;</div><div class="line">		render()&#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">'render'</span>)</div><div class="line">			<span class="keyword">return</span>(</div><div class="line">				&lt;div&gt;</div><div class="line">					&#123; <span class="keyword">this</span>.state.show ? <span class="xml"><span class="tag">&lt;<span class="name">Test</span> <span class="attr">num</span>=<span class="string">&#123;this.state.num&#125;</span> /&gt;</span> : null &#125;</span></div><div class="line">					&lt;input type='button' value='+1' ref=&#123;btn =&gt; this.btn = btn&#125; onClick=&#123;() =&gt; this.setState(&#123;num:++this.state.num&#125;)&#125; /&gt;</div><div class="line">					&lt;input type='button' value='销毁' onClick=&#123;() =&gt; this.setState(&#123;show:false&#125;)&#125; /&gt;</div><div class="line">				&lt;/div&gt;</div><div class="line">			)</div><div class="line">		&#125;</div><div class="line">&#125;</div><div class="line">export default App</div></pre></td></tr></table></figure>
+<p><strong>componentWillUnmount</strong> （销毁组件）</p>
+<ul>
+<li>组件被卸载的时候调用。一般在<code>componentDidMount</code>里面注册的事件需要在这里删除。很少应用</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/06/15-dom/" rel="next" title="React获取DOM节点">
+                <i class="fa fa-chevron-left"></i> React获取DOM节点
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/06/17-Context/" rel="prev" title="Context">
+                Context <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460"
+               alt="小u" />
+          <p class="site-author-name" itemprop="name">小u</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wentoos" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      豆瓣
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#生命周期函数"><span class="nav-number">1.</span> <span class="nav-text">生命周期函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首次加载时触发的生命周期"><span class="nav-number">1.1.</span> <span class="nav-text">首次加载时触发的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新阶段（重新渲染）"><span class="nav-number">1.2.</span> <span class="nav-text">更新阶段（重新渲染）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子组件的生命周期流程"><span class="nav-number">1.3.</span> <span class="nav-text">子组件的生命周期流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子组件"><span class="nav-number">1.3.1.</span> <span class="nav-text">子组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父组件"><span class="nav-number">1.3.2.</span> <span class="nav-text">父组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#销毁组件"><span class="nav-number">1.4.</span> <span class="nav-text">销毁组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子组件（要销毁的组件）"><span class="nav-number">1.4.1.</span> <span class="nav-text">子组件（要销毁的组件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父组件-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">父组件</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小u</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

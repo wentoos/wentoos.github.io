@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="组件的组合、嵌套和组件树组建的创建第一种组件的创建方式 function1234567891011import React from &amp;apos;react&amp;apos;import ReactDom from &amp;apos;react-dom&amp;apos;function Hello()&amp;#123;    return (        &amp;lt;div&amp;gt;            &amp;lt;h1&amp;g">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组件的组合、嵌套和组件树">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/8-component/index.html">
+<meta property="og:site_name" content="小u Notes">
+<meta property="og:description" content="组件的组合、嵌套和组件树组建的创建第一种组件的创建方式 function1234567891011import React from &amp;apos;react&amp;apos;import ReactDom from &amp;apos;react-dom&amp;apos;function Hello()&amp;#123;    return (        &amp;lt;div&amp;gt;            &amp;lt;h1&amp;g">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/19BBE4E2-A12E-4657-BA6A-61484F67FA60.png">
+<meta property="og:updated_time" content="2017-08-06T15:31:18.141Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="组件的组合、嵌套和组件树">
+<meta name="twitter:description" content="组件的组合、嵌套和组件树组建的创建第一种组件的创建方式 function1234567891011import React from &amp;apos;react&amp;apos;import ReactDom from &amp;apos;react-dom&amp;apos;function Hello()&amp;#123;    return (        &amp;lt;div&amp;gt;            &amp;lt;h1&amp;g">
+<meta name="twitter:image" content="http://huzidaha.github.io/static/assets/img/posts/19BBE4E2-A12E-4657-BA6A-61484F67FA60.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/06/8-component/"/>
+
+
+
+
+
+  <title>组件的组合、嵌套和组件树 | 小u Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小u Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/8-component/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小u">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小u Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">组件的组合、嵌套和组件树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T15:32:11+00:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- toc -->
+<h1 id="组件的组合、嵌套和组件树"><a href="#组件的组合、嵌套和组件树" class="headerlink" title="组件的组合、嵌套和组件树"></a>组件的组合、嵌套和组件树</h1><h2 id="组建的创建"><a href="#组建的创建" class="headerlink" title="组建的创建"></a>组建的创建</h2><h3 id="第一种组件的创建方式-function"><a href="#第一种组件的创建方式-function" class="headerlink" title="第一种组件的创建方式 function"></a>第一种组件的创建方式 <strong>function</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;</div><div class="line">import ReactDom from &apos;react-dom&apos;</div><div class="line"></div><div class="line">function Hello()&#123;</div><div class="line">    return (</div><div class="line">        &lt;div&gt;</div><div class="line">            &lt;h1&gt;我是第一种组件的创建方式&lt;/h1&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    )</div><div class="line">&#125;</div><div class="line">ReactDom.render(&lt;Hello /&gt;,document.querySelector(&apos;#root&apos;))</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>自定义的组件都必须要用大写字母开头，普通的 HTML 标签都用小写字母开头。</li>
+<li>必须有返回值,而且返回值必须是JSX elements</li>
+</ol>
+<h3 id="第二种组件的创建方式-ES6类"><a href="#第二种组件的创建方式-ES6类" class="headerlink" title="第二种组件的创建方式 ES6类"></a>第二种组件的创建方式 <strong>ES6类</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;</div><div class="line"></div><div class="line">class App extends React.Component&#123;</div><div class="line">  render()&#123;</div><div class="line">    return (</div><div class="line">      &lt;div&gt;</div><div class="line">        App</div><div class="line">      &lt;/div&gt;    </div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">export default App</div></pre></td></tr></table></figure>
+<h2 id="组件内参数的传递"><a href="#组件内参数的传递" class="headerlink" title="组件内参数的传递"></a>组件内参数的传递</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;</div><div class="line">import ReactDom from &apos;react-dom&apos;</div><div class="line"></div><div class="line">function Word(props)&#123;</div><div class="line">    return (</div><div class="line">    &lt;p&gt;My name is &#123;props.name&#125;&lt;/p&gt;</div><div class="line">    )</div><div class="line">&#125;</div><div class="line"></div><div class="line">function Hello()&#123;</div><div class="line">    return (</div><div class="line">        &lt;div&gt;</div><div class="line">            &lt;Word name=&apos;Liu&apos; /&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    )</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDom.render(&lt;Word /&gt;,document.querySelector(&apos;#root&apos;))</div></pre></td></tr></table></figure>
+<h2 id="导入CSS"><a href="#导入CSS" class="headerlink" title="导入CSS"></a>导入CSS</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//插入css外部样式：</span></div><div class="line"><span class="keyword">import</span> <span class="string">'./App.css'</span></div><div class="line"></div><div class="line"><span class="comment">//行内样式</span></div><div class="line">&lt;h1 style=&#123;&#125;&gt;我是H1&lt;<span class="regexp">/h1&gt;</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/行内样式的时候，样式写成对象的模式，对象是js语言所以用大括号包裹</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/1.&#123; backgroundColor:'teal', fontSize:'20px' &#125;</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/2.写成一个方法，返回一个对象</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/3.声明一个对象</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/4.只要样式写为对象的方式</span></div><div class="line"><span class="regexp">styles()&#123;</span></div><div class="line"><span class="regexp">  return(&#123;</span></div><div class="line"><span class="regexp">    box:&#123;</span></div><div class="line"><span class="regexp">      background:'green'</span></div><div class="line"><span class="regexp">    &#125;;</span></div><div class="line"><span class="regexp">  &#125;)</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp">&lt;h1 style=&#123;this.styles.box&#125;&gt;我是H1&lt;/</span>h1&gt;</div><div class="line"><span class="keyword">let</span> styles=&#123;</div><div class="line">  h1:&#123;</div><div class="line">    color:<span class="string">'#CCC'</span>,</div><div class="line">    backgroundColor:<span class="string">'teal'</span></div><div class="line">  &#125;,</div><div class="line">  div:&#123;</div><div class="line">    width:<span class="string">'100vw'</span>,</div><div class="line">    height:<span class="string">'200px'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;h1 style=&#123;styles.h1&#125;&gt;我也是H1&lt;<span class="regexp">/h1&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="导入图片"><a href="#导入图片" class="headerlink" title="导入图片"></a>导入图片</h2><p>当作变量导入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//先导入：</span></div><div class="line"><span class="keyword">import</span> img <span class="keyword">from</span> <span class="string">'./xxx.jpg'</span>  </div><div class="line"></div><div class="line"><span class="comment">//引用本地：</span></div><div class="line"><span class="string">"&lt;img src=&#123;img&#125; alt='' /&gt;"</span>  </div><div class="line"></div><div class="line"><span class="comment">//网上图片直接引用：</span></div><div class="line"><span class="string">"&lt;img src='[地址]' alt='' /&gt;"</span></div></pre></td></tr></table></figure>
+<h2 id="组件的嵌套"><a href="#组件的嵌套" class="headerlink" title="组件的嵌套"></a>组件的嵌套</h2><h3 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'./Header'</span></div><div class="line"><span class="keyword">import</span> Main <span class="keyword">from</span> <span class="string">'./Main'</span></div><div class="line"><span class="keyword">import</span> Footer <span class="keyword">from</span> <span class="string">'./Footer'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">  render()&#123;</div><div class="line">    <span class="keyword">return</span>(</div><div class="line">      &lt;div className=<span class="string">'App'</span>&gt;</div><div class="line">        &lt;Header /&gt;</div><div class="line">        &lt;Main /&gt;</div><div class="line">        &lt;Footer /&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt;    </span></div><div class="line"><span class="regexp">    )</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp">export default App</span></div></pre></td></tr></table></figure>
+<h3 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></div><div class="line"></div><div class="line">ReactDom.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span>,document.querySelector('#root'))</span></div></pre></td></tr></table></figure>
+<h3 id="组件树"><a href="#组件树" class="headerlink" title="组件树"></a>组件树</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Title</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render()&#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;h1&gt;React&lt;<span class="regexp">/h1&gt;</span></div><div class="line"><span class="regexp">    )</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">class Header extends Component &#123;</span></div><div class="line"><span class="regexp">  render () &#123;</span></div><div class="line"><span class="regexp">    return (</span></div><div class="line"><span class="regexp">      &lt;div&gt;</span></div><div class="line"><span class="regexp">        &lt;Title /</span>&gt;</div><div class="line">        &lt;h2&gt;This is Header&lt;<span class="regexp">/h2&gt;</span></div><div class="line"><span class="regexp">      &lt;/</span>div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;h2&gt;This is main content&lt;<span class="regexp">/h2&gt;</span></div><div class="line"><span class="regexp">      &lt;/</span>div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Footer</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;h2&gt;This is footer&lt;<span class="regexp">/h2&gt;</span></div><div class="line"><span class="regexp">      &lt;/</span>div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Index</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;Header /&gt;</div><div class="line">        &lt;Main /&gt;</div><div class="line">        &lt;Footer /&gt;</div><div class="line">      &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">    )</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">ReactDOM.render(&lt;Index /</span>&gt;,<span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</div></pre></td></tr></table></figure>
+<p>组件可以和组件组合在一起，组件内部可以使用别的组件。就像普通的 HTML 标签一样使用就可以。这样的组合嵌套，最后构成一个所谓的组件树。</p>
+<p><img src="http://huzidaha.github.io/static/assets/img/posts/19BBE4E2-A12E-4657-BA6A-61484F67FA60.png" alt="组件树"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/06/7-render/" rel="next" title="创建组件">
+                <i class="fa fa-chevron-left"></i> 创建组件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/06/9-onclick/" rel="prev" title="事件监听">
+                事件监听 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460"
+               alt="小u" />
+          <p class="site-author-name" itemprop="name">小u</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wentoos" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      豆瓣
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#组件的组合、嵌套和组件树"><span class="nav-number">1.</span> <span class="nav-text">组件的组合、嵌套和组件树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组建的创建"><span class="nav-number">1.1.</span> <span class="nav-text">组建的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种组件的创建方式-function"><span class="nav-number">1.1.1.</span> <span class="nav-text">第一种组件的创建方式 function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种组件的创建方式-ES6类"><span class="nav-number">1.1.2.</span> <span class="nav-text">第二种组件的创建方式 ES6类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件内参数的传递"><span class="nav-number">1.2.</span> <span class="nav-text">组件内参数的传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入CSS"><span class="nav-number">1.3.</span> <span class="nav-text">导入CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入图片"><span class="nav-number">1.4.</span> <span class="nav-text">导入图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的嵌套"><span class="nav-number">1.5.</span> <span class="nav-text">组件的嵌套</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子组件"><span class="nav-number">1.5.1.</span> <span class="nav-text">子组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父组件"><span class="nav-number">1.5.2.</span> <span class="nav-text">父组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件树"><span class="nav-number">1.5.3.</span> <span class="nav-text">组件树</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小u</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

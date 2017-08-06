@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux,文件系统," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="文件系统（ File System ）如果我们想对文件进行，增删改查（ touch rm mv vim ），或者说进行文件的创建，删除，移动，重命名等操作，首先要解决是什么呢？要能找到它。或者说，就是要知道文件在文件系统上的位置。 所以，我们首先要说的是文件系统的结构。实际上就是说一下，Linux 系统默认的那些文件夹的结构。实际上这个结构是非常简单的。 Windows 系统上还分 C/D 盘，L">
+<meta name="keywords" content="Linux,文件系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件系统结构">
+<meta property="og:url" content="http://yoursite.com/2017/01/01/2-file-sys/index.html">
+<meta property="og:site_name" content="小u Notes">
+<meta property="og:description" content="文件系统（ File System ）如果我们想对文件进行，增删改查（ touch rm mv vim ），或者说进行文件的创建，删除，移动，重命名等操作，首先要解决是什么呢？要能找到它。或者说，就是要知道文件在文件系统上的位置。 所以，我们首先要说的是文件系统的结构。实际上就是说一下，Linux 系统默认的那些文件夹的结构。实际上这个结构是非常简单的。 Windows 系统上还分 C/D 盘，L">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-06T15:20:31.817Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件系统结构">
+<meta name="twitter:description" content="文件系统（ File System ）如果我们想对文件进行，增删改查（ touch rm mv vim ），或者说进行文件的创建，删除，移动，重命名等操作，首先要解决是什么呢？要能找到它。或者说，就是要知道文件在文件系统上的位置。 所以，我们首先要说的是文件系统的结构。实际上就是说一下，Linux 系统默认的那些文件夹的结构。实际上这个结构是非常简单的。 Windows 系统上还分 C/D 盘，L">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/01/2-file-sys/"/>
+
+
+
+
+
+  <title>文件系统结构 | 小u Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小u Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/01/2-file-sys/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小u">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小u Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">文件系统结构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-01T14:54:33+00:00">
+                2017-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="文件系统（-File-System-）"><a href="#文件系统（-File-System-）" class="headerlink" title="文件系统（ File System ）"></a>文件系统（ File System ）</h1><p>如果我们想对文件进行，增删改查（ touch rm mv vim ），或者说进行文件的创建，删除，移动，重命名等操作，首先要解决是什么呢？要能找到它。或者说，就是要知道文件在文件系统上的位置。</p>
+<p>所以，我们首先要说的是文件系统的结构。实际上就是说一下，Linux 系统默认的那些文件夹的结构。实际上这个结构是非常简单的。</p>
+<p>Windows 系统上还分 C/D 盘，Linux 这里其实更简单。所有的文件夹都会存在一个顶级老祖宗文件夹之内。这个老祖宗的名字叫做 <code>/</code> 。</p>
+<p>Linux 文件系统结构，就是老祖宗文件夹里面包含子文件夹或者文件，子文件里面又包含孙子辈的文件夹或者文件。这个文件系统其实就是一根倒挂的树，最顶端就是 <code>/</code> 这个文件夹。<br><!-- toc --></p>
+<h2 id="用户主目录（-HOME-）"><a href="#用户主目录（-HOME-）" class="headerlink" title="用户主目录（ HOME ）"></a>用户主目录（ HOME ）</h2><p>除了 <code>/</code> 这个文件夹之外，位置非常独特的文件夹还有一个，就是 <code>/home/Liu</code> ，它通常被称为<strong>用户主目录</strong> （ Unix 传统下把文件夹就叫目录），它还有个外号叫 <code>~</code> 。用户登陆进系统之后，默认的着陆位置就是这个文件夹。同时，默认情况下，用户只是在这个文件夹里有写权限，而在这个之外的地方是没有写权限的。</p>
+<p>要真正找到文件，需要我们学会如何在文件系统内做<strong>跳转</strong> 。</p>
+<h2 id="如何在文件系统内做跳转？"><a href="#如何在文件系统内做跳转？" class="headerlink" title="如何在文件系统内做跳转？"></a>如何在文件系统内做跳转？</h2><p>这里我们会使用到的一个核心命令叫 <code>cd</code> （ Change Directory 改变文件夹 ) 。所以说文件系统内做跳转，其实就是改变<strong>当前</strong>文件夹。</p>
+<p>查看当然文件夹中的内容，就用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls</div></pre></td></tr></table></figure>
+<p>这个命令。我们可以看到的输出结果大概是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">Desktop Application Download</div></pre></td></tr></table></figure>
+<p>那么，现在如果我们想要跳转到桌面（或者说就是把<strong>当然文件夹</strong>改变为桌面），那就来执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd Desktop</div></pre></td></tr></table></figure>
+<p>这样就可以跳转到桌面了。到桌面执行 <code>mkdir FolderName</code> 来看看这个新的文件夹，是否真正创建到了桌面上（ mkdir 全称就是 make Directory ，创建一个文件夹）。</p>
+<p>如何跳转到上一级文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ..</div></pre></td></tr></table></figure>
+<p>其中 <code>..</code> 就是<strong>上一级文件夹</strong>的外号。</p>
+<p>如何快速的回到<strong>用户主目录</strong>呢?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ~</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd</div></pre></td></tr></table></figure>
+<p>都可以。</p>
+<h2 id="使用绝对路径进行跳转"><a href="#使用绝对路径进行跳转" class="headerlink" title="使用绝对路径进行跳转"></a>使用绝对路径进行跳转</h2><p>上面的跳转形式，都是基于文件夹和我所处的相对位置（<strong>相对路径</strong>）来进行跳转。但是文件系统上跳转还有另外一种形式叫做使用<strong>绝对路径</strong> 。</p>
+<p>使用绝对路径进行跳转的最大好处，就是跟用户的<strong>当前位置</strong>无关。</p>
+<p>绝对路径的特点是一定以老祖宗文件夹打头，也就是以 <code>/</code> 打头。</p>
+<p>例如，不管我们当前位置在哪里，下面操作之后，我们都可以跳转成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /</div></pre></td></tr></table></figure>
+<p>跳转到老祖宗文件夹中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /home/Liu</div></pre></td></tr></table></figure>
+<p>可以直接跳转到用户主目录。</p>
+<h2 id="Tab-补齐"><a href="#Tab-补齐" class="headerlink" title="Tab 补齐"></a>Tab 补齐</h2><p>敲路径的时候，很容易敲错，可以敲出文件夹的打头的字母，然后敲 Tab （或者敲两下 Tab ）就可以自动补齐出完整的文件名了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>知道了如何在文件系统中跳转了，我们就可以进一步学习各种文件操作了（创建，移动，重命名，删除等等）。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/文件系统/" rel="tag"># 文件系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/01/12-webpack/" rel="next" title="快速配置开发环境">
+                <i class="fa fa-chevron-left"></i> 快速配置开发环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/01/3-file-man/" rel="prev" title="文件操作">
+                文件操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460"
+               alt="小u" />
+          <p class="site-author-name" itemprop="name">小u</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wentoos" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      豆瓣
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件系统（-File-System-）"><span class="nav-number">1.</span> <span class="nav-text">文件系统（ File System ）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户主目录（-HOME-）"><span class="nav-number">1.1.</span> <span class="nav-text">用户主目录（ HOME ）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在文件系统内做跳转？"><span class="nav-number">1.2.</span> <span class="nav-text">如何在文件系统内做跳转？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用绝对路径进行跳转"><span class="nav-number">1.3.</span> <span class="nav-text">使用绝对路径进行跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tab-补齐"><span class="nav-number">1.4.</span> <span class="nav-text">Tab 补齐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小u</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="github," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="上传代码到 Github.com前面学会了如何在本地用 git 创建项目版本，本节咱们看看咋把新版本上传到 github.com 之上。 准备工作：删除已创建的项目如何删除一个 github.com 的仓库呢？ 首先到仓库页面：https://github.com/wentoos/wentoos.github.io 点 Settings（设置）这一个标签。打开的页面底部有一个 “Delete t">
+<meta name="keywords" content="github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="上传代码到 Github.com">
+<meta property="og:url" content="http://yoursite.com/2017/01/01/9-push/index.html">
+<meta property="og:site_name" content="小u Notes">
+<meta property="og:description" content="上传代码到 Github.com前面学会了如何在本地用 git 创建项目版本，本节咱们看看咋把新版本上传到 github.com 之上。 准备工作：删除已创建的项目如何删除一个 github.com 的仓库呢？ 首先到仓库页面：https://github.com/wentoos/wentoos.github.io 点 Settings（设置）这一个标签。打开的页面底部有一个 “Delete t">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-06T15:22:26.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="上传代码到 Github.com">
+<meta name="twitter:description" content="上传代码到 Github.com前面学会了如何在本地用 git 创建项目版本，本节咱们看看咋把新版本上传到 github.com 之上。 准备工作：删除已创建的项目如何删除一个 github.com 的仓库呢？ 首先到仓库页面：https://github.com/wentoos/wentoos.github.io 点 Settings（设置）这一个标签。打开的页面底部有一个 “Delete t">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/01/9-push/"/>
+
+
+
+
+
+  <title>上传代码到 Github.com | 小u Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小u Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/01/9-push/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小u">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小u Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">上传代码到 Github.com</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-01T14:54:33+00:00">
+                2017-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- toc -->
+<h1 id="上传代码到-Github-com"><a href="#上传代码到-Github-com" class="headerlink" title="上传代码到 Github.com"></a>上传代码到 Github.com</h1><p>前面学会了如何在本地用 git 创建项目版本，本节咱们看看咋把新版本上传到 github.com 之上。</p>
+<h2 id="准备工作：删除已创建的项目"><a href="#准备工作：删除已创建的项目" class="headerlink" title="准备工作：删除已创建的项目"></a>准备工作：删除已创建的项目</h2><p>如何删除一个 github.com 的仓库呢？</p>
+<p>首先到仓库页面：<a href="https://github.com/wentoos/wentoos.github.io" target="_blank" rel="external">https://github.com/wentoos/wentoos.github.io</a></p>
+<p>点 Settings（设置）这一个标签。打开的页面底部有一个 “Delete this repository” 按钮，意思是”删除这个仓库“，点击按钮。打开的界面中，输入一下这个仓库的名字 wentoos.github.io 就可以把这个仓库删除了。</p>
+<p>删除仓库之后，我们要做的事情是：</p>
+<blockquote>
+<p>如何把本地的已有仓库，上传到 github.com</p>
+</blockquote>
+<h2 id="第一步：创建本地项目"><a href="#第一步：创建本地项目" class="headerlink" title="第一步：创建本地项目"></a>第一步：创建本地项目</h2><p>项目名称是任意的，但是我们这里想做的事情是上传比较，所以，本地这个仓库名，也必须是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir wentoos.github.io</div></pre></td></tr></table></figure>
+<p>本地项目名要和 github.com 我们一会儿要创建的仓库名保持一致。</p>
+<p>然后，我们就可以把我们想要上传的内容拷贝到这个文件夹内，并制作本地版本。</p>
+<p>拷贝进来的内容，要符合第一天我们介绍的 github pages 的格式规范（其实最重要的一点就是每个 .md 文件中都要有头部，参考第一天我们的文档中的介绍）。</p>
+<h2 id="第二步：创建-github-com-上的同名仓库"><a href="#第二步：创建-github-com-上的同名仓库" class="headerlink" title="第二步：创建 github.com 上的同名仓库"></a>第二步：创建 github.com 上的同名仓库</h2><p>到 github.com 上点 <code>New repository</code> 按钮，新建一个项目，<br>项目名叫做 <code>wentoos.github.io</code> 。</p>
+<blockquote>
+<p>注意，不要勾选任何选项，尤其是不能默认创建 README.md 文件。</p>
+</blockquote>
+<p>创建完成之后，页面上有两个选择，其中第二个是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">or push an existing repository from the command line</div></pre></td></tr></table></figure>
+<p>翻译：或者把一个已经存在的仓库从命令行推送上来</p>
+<p>我们当前就属于这个情况。上传方式有两种 HTTPS 和 SSH ，我们推荐的方式是 SSH，点一下页面上 SSH 字样的按钮。</p>
+<p>接下来就按照页面上显示的两步来走。</p>
+<h2 id="尝试推送-push"><a href="#尝试推送-push" class="headerlink" title="尝试推送 push"></a>尝试推送 push</h2><p>到本地命令行，进入我们的本地项目文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd wentoos.github.io</div></pre></td></tr></table></figure>
+<p>然后执行下面两步：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin git@github.com:funnydeer/funnydeer.github.io.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+<p>如上所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git@github.com:funnydeer/funnydeer.github.io.git</div></pre></td></tr></table></figure>
+<p>这个是远端仓库地址。第一个命令本身的意思是把远端仓库地址记录到本地仓库中。</p>
+<p>下一步 <code>git push -u origin master</code> 就是真正进行上传代码的工作了。</p>
+<p>但是执行结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Please make sure you have the correct access rights</div></pre></td></tr></table></figure>
+<p>执行失败，解决方法就是添加 ssh 公钥到 github.com 。</p>
+<h2 id="第三步：添加-ssh-key"><a href="#第三步：添加-ssh-key" class="headerlink" title="第三步：添加 ssh key"></a>第三步：添加 ssh key</h2><p>现在需要达成开发机和 github.com 的互信。</p>
+<p>因为开发过程中，我们需要用本地机器向 github.com 的仓库中<br>写东西（ git push ），同时我们又不想每次都输入密码，所以我们就用 ssh key 的形式来达成互信，过程如下：</p>
+<ul>
+<li>在本地机器上生成一对 ssh key ，一个公钥，一个私钥</li>
+<li>把公钥添加到 github.com</li>
+</ul>
+<p>具体操作如下：</p>
+<ul>
+<li>首先本地运行 <code>ssh-keygen</code> 命令，可以在 ~/.ssh 文件夹下生产 ssh key</li>
+<li>到 <code>~/.ssh/id_rsa.pub</code> 也就是公钥文件中，拷贝公钥字符串</li>
+<li>把字符串粘贴到 github.com -&gt; setting -&gt; ssh keys -&gt; add</li>
+</ul>
+<p>这样添加 ssh key 的工作就完成了，以后我们执行 git push 这样的命令就不会看到如下错误了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">...permission denied...</div><div class="line">...make sure ... correct access right ...</div></pre></td></tr></table></figure>
+<p>大功告成。</p>
+<h2 id="Github-Pages-显示网站"><a href="#Github-Pages-显示网站" class="headerlink" title="Github Pages 显示网站"></a>Github Pages 显示网站</h2><p>上面的步骤操作完成，就可以在 l552177239.github.io 看到网站的首页了。<br>当然我们这里依然是使用 Github Pages 服务，所以是可以添加 md 文件的。</p>
+<p>下面，我们涉及到如何把网站做的好看一些的问题。这个需要了解 github Pages 底层的机制。底层 Github Pages 采用了 Jekyll 框架。</p>
+<h2 id="Jekyll-框架"><a href="#Jekyll-框架" class="headerlink" title="Jekyll 框架"></a>Jekyll 框架</h2><p>要把 Github Pages 的网站做漂亮，必须了解 Jekyll 框架如何运行的。</p>
+<p>首先，.md 文件，也就是 markdown 格式的支持，就是 Jekyll 提供给我们的。这个前面已经详细介绍过了。</p>
+<p>现在，我们来添加<strong>布局文件</strong></p>
+<ul>
+<li>英文参考文档：<a href="https://jekyllrb.com/docs/frontmatter/" target="_blank" rel="external">官网</a></li>
+<li>中文参考文档（有可能过期）： <a href="http://jekyll.com.cn/docs/frontmatter/" target="_blank" rel="external">中文网</a></li>
+</ul>
+<h3 id="Jekyll-添加布局文件"><a href="#Jekyll-添加布局文件" class="headerlink" title="Jekyll: 添加布局文件"></a>Jekyll: 添加布局文件</h3><p>首先打开所有的 .md 中的头部改成这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: First Page</div><div class="line">layout: default</div><div class="line">---</div></pre></td></tr></table></figure>
+<p>然后来创建布局文件 default.html ，这个文件必须存放到<br> <em>layouts 文件夹之内，</em></p>
+<p>_layouts/default.html 内容如下，可以参考我的其他项目中的写法。例如：</p>
+<pre><code>anything anything
+  content
+anything anything
+</code></pre><p>注意，上面的 content 外面要套两个大括号。</p>
+<p><code>anything anything</code> 可以替换成任意字符端，当然也可以替换成 html 代码。所以就可以给 .md 文件引入 main.css 了。_</p>
+<h3 id="Jekyll-引用-main-css"><a href="#Jekyll-引用-main-css" class="headerlink" title="Jekyll: 引用 main.css"></a>Jekyll: 引用 main.css</h3><p><em>layouts/default.html 中这样写</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/css/main.css"</span></span></div><div class="line">  &lt;/head&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    content</div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：上面的 content 外面要套两层大括号。另外，特别要注意的是 main.css 一定不能写到 <em>layouts 文件夹，或者任意的以 </em> 打头的文件夹内。_</p>
+</blockquote>
+<p>当前，我们的 main.css 要放到项目顶级文件夹下的 css 文件夹之内</p>
+<p>css/main.css</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">background</span>: <span class="number">#bada55</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="git-clone-命令"><a href="#git-clone-命令" class="headerlink" title="git clone 命令"></a>git clone 命令</h2><p>要想把 github 上的一个项目代码下载到本地有两种方式，一种就是普通下载（ download ）。但是，开发者<br>基本上会选择另外一种方式，就是 clone 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone &lt;版本库的网址&gt;</div></pre></td></tr></table></figure>
+<p>clone 的特点就是不仅仅可以得到最新代码，而且可以得到整个改版历史。而普通下载只能得到最新版本。</p>
+<h2 id="git-各个命令的作用"><a href="#git-各个命令的作用" class="headerlink" title="git 各个命令的作用"></a>git 各个命令的作用</h2><ul>
+<li><code>git push</code> 把本地仓库中有，而远端对应仓库中没有的<strong>版本</strong>推送到远端</li>
+<li><code>git pull</code> 把远端仓库中有，而本地对应仓库中没有的<strong>版本</strong>拉到本地</li>
+<li><code>git clone</code> 把远端仓库，克隆到本地</li>
+</ul>
+<h2 id="学习-Github-Git-的学习目标"><a href="#学习-Github-Git-的学习目标" class="headerlink" title="学习 Github/Git 的学习目标"></a>学习 Github/Git 的学习目标</h2><ul>
+<li>知道 git 是 <strong>版本控制</strong> 工具</li>
+<li>每个同学要有一个 github 仓库</li>
+<li>已经添加 ssh key 互信，也就是可以从本地仓库推送内容（ git push ）到 github 仓库</li>
+<li>可以在本地仓库中任意添加，删除，修改文件，并作成版本</li>
+</ul>
+<p>这样，github/git 的初级使用我们就有能力完成了。但是，作为成熟开发者，github 上面会发 push request ，本地 git 会开启新分支，都是必备知识。暂时我们先不涉及。</p>
+<h3 id="承前启后"><a href="#承前启后" class="headerlink" title="承前启后"></a>承前启后</h3><p>程序员三大基本工具</p>
+<ul>
+<li>编辑器 atom</li>
+<li>命令行 Linux</li>
+<li>版本控制 Git/Github</li>
+</ul>
+<p>学习上面三大工具的目的，就是为了更加高效的<strong>写代码</strong> 。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/01/8-Module/" rel="next" title="模块的语法">
+                <i class="fa fa-chevron-left"></i> 模块的语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/01/11-markdown/" rel="prev" title="Markdown">
+                Markdown <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460"
+               alt="小u" />
+          <p class="site-author-name" itemprop="name">小u</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wentoos" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      豆瓣
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#上传代码到-Github-com"><span class="nav-number">1.</span> <span class="nav-text">上传代码到 Github.com</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作：删除已创建的项目"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作：删除已创建的项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步：创建本地项目"><span class="nav-number">1.2.</span> <span class="nav-text">第一步：创建本地项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：创建-github-com-上的同名仓库"><span class="nav-number">1.3.</span> <span class="nav-text">第二步：创建 github.com 上的同名仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尝试推送-push"><span class="nav-number">1.4.</span> <span class="nav-text">尝试推送 push</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：添加-ssh-key"><span class="nav-number">1.5.</span> <span class="nav-text">第三步：添加 ssh key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages-显示网站"><span class="nav-number">1.6.</span> <span class="nav-text">Github Pages 显示网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jekyll-框架"><span class="nav-number">1.7.</span> <span class="nav-text">Jekyll 框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jekyll-添加布局文件"><span class="nav-number">1.7.1.</span> <span class="nav-text">Jekyll: 添加布局文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jekyll-引用-main-css"><span class="nav-number">1.7.2.</span> <span class="nav-text">Jekyll: 引用 main.css</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-clone-命令"><span class="nav-number">1.8.</span> <span class="nav-text">git clone 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-各个命令的作用"><span class="nav-number">1.9.</span> <span class="nav-text">git 各个命令的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习-Github-Git-的学习目标"><span class="nav-number">1.10.</span> <span class="nav-text">学习 Github/Git 的学习目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#承前启后"><span class="nav-number">1.10.1.</span> <span class="nav-text">承前启后</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小u</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

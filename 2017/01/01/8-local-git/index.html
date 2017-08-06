@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="GIT," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Git 本地工作流Git 是一个版本控制工具，什么是版本控制，我们下面实际操作一下就一目了然了。 Git 本地工作流（没有网络操作）可以分为以下几步：  第一步，使用 atom 创建并编辑项目 第二步，使用 git init 命令，把一个普通项目变成一个Git 仓库 第三步，使用 git add -A 命令，添加修改内容到 Git 第四步，使用 git commit -m&amp;quot;my com">
+<meta name="keywords" content="GIT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 本地工作流">
+<meta property="og:url" content="http://yoursite.com/2017/01/01/8-local-git/index.html">
+<meta property="og:site_name" content="小u Notes">
+<meta property="og:description" content="Git 本地工作流Git 是一个版本控制工具，什么是版本控制，我们下面实际操作一下就一目了然了。 Git 本地工作流（没有网络操作）可以分为以下几步：  第一步，使用 atom 创建并编辑项目 第二步，使用 git init 命令，把一个普通项目变成一个Git 仓库 第三步，使用 git add -A 命令，添加修改内容到 Git 第四步，使用 git commit -m&amp;quot;my com">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-06T15:21:57.825Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git 本地工作流">
+<meta name="twitter:description" content="Git 本地工作流Git 是一个版本控制工具，什么是版本控制，我们下面实际操作一下就一目了然了。 Git 本地工作流（没有网络操作）可以分为以下几步：  第一步，使用 atom 创建并编辑项目 第二步，使用 git init 命令，把一个普通项目变成一个Git 仓库 第三步，使用 git add -A 命令，添加修改内容到 Git 第四步，使用 git commit -m&amp;quot;my com">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/01/8-local-git/"/>
+
+
+
+
+
+  <title>Git 本地工作流 | 小u Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小u Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/01/8-local-git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小u">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小u Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git 本地工作流</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-01T14:54:33+00:00">
+                2017-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- toc -->
+<h1 id="Git-本地工作流"><a href="#Git-本地工作流" class="headerlink" title="Git 本地工作流"></a>Git 本地工作流</h1><p>Git 是一个<strong>版本控制</strong>工具，什么是版本控制，我们下面实际操作一下就一目了然了。</p>
+<p>Git <strong>本地工作流</strong>（没有网络操作）可以分为以下几步：</p>
+<ul>
+<li>第一步，使用 atom 创建并编辑项目</li>
+<li>第二步，使用 <code>git init</code> 命令，把一个<strong>普通项目</strong>变成一个<strong>Git 仓库</strong></li>
+<li>第三步，使用 <code>git add -A</code> 命令，添加修改内容到 Git</li>
+<li>第四步，使用 <code>git commit -m&quot;my commit msg&quot;</code> 命令，制作一个版本</li>
+</ul>
+<h2 id="下面来走一个-Git-本地工作流的-Demo"><a href="#下面来走一个-Git-本地工作流的-Demo" class="headerlink" title="下面来走一个 Git 本地工作流的 Demo"></a>下面来走一个 Git 本地工作流的 Demo</h2><p>首先，我们先来创建一个项目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir trygit</div></pre></td></tr></table></figure>
+<p>然后进入项目，开始添加一个 index.html 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd trygit</div><div class="line">atom .</div></pre></td></tr></table></figure>
+<p>现在我们来把一个 <strong>普通项目</strong>变成一个<strong>仓库</strong> ，需要执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">Initialized empty Git repository in /Users/peter/Desktop/project/.git/</div></pre></td></tr></table></figure></p>
+<p>init 是英文 initialization （初始化）的缩写。<br>输出信息的英文意思是：</p>
+<blockquote>
+<p>已经在 /Users/peter/Desktop/project/.git/ 初始化了一个空的 git 仓库</p>
+</blockquote>
+<p>运行这个命令之后，如果我们敲<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls</div></pre></td></tr></table></figure></p>
+<p>会看到没有任何变化。因为，命令创建的 <code>.git</code> 文件夹是一个隐藏文件夹（所有以点开头的文件或者文件夹在 Linux 系统下都是隐藏的）。</p>
+<p>要查看隐藏文件夹，可以敲<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -a</div></pre></td></tr></table></figure></p>
+<p>这样可以看到输出中包含 <code>.git</code> 文件夹了。</p>
+<p><code>.git</code> 文件夹是 Git 仓库的心脏，未来所有的版本历史都会保存在 .git 文件夹中。所以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">仓库 == 项目 + .git/改版历史</div></pre></td></tr></table></figure></p>
+<p>注：<strong>仓库</strong> ，英文是 <strong>Repo</strong> ，是我们使用 Git，Github 必须要了解的一个概念。</p>
+<p>如果要制作一个<strong>版本</strong>，一共分两步：添加修改和制作版本。</p>
+<p>首先来添加修改到 git ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add -A</div></pre></td></tr></table></figure></p>
+<p>注： -A 的意思是添加“所有当前修改内容”</p>
+<p>要想把添加的内容制作成版本，还需要执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m&quot;I add a file&quot;</div></pre></td></tr></table></figure></p>
+<p>注： <code>commit</code> 的意思是”做一件很重要的事”，但是在 git 这里，它的意思就是<strong>版本</strong> 。<code>-m</code> 就是 message 的简写，后面的内容是<strong>再版留言</strong> 。</p>
+<p>问题来了，新用户首次执行上面的命令，会看到下面的报错信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">please tell me who you are</div></pre></td></tr></table></figure></p>
+<p>解决方法是，运行下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name  &quot;Peter Wang&quot;</div><div class="line">git config --global user.email  &quot;happypeter1983@gmail.com&quot;</div></pre></td></tr></table></figure></p>
+<p>来设置用户名和邮箱。这样再次执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git commit -m&quot;I add a file&quot;</div><div class="line">[master (root-commit) dcb0329] I add index.html</div><div class="line"> 1 file changed, 1 insertion(+)</div><div class="line"> create mode 100644 index.html</div></pre></td></tr></table></figure></p>
+<p>就可以成功制作一个版本了。也就是 Git 本地工作流就完成了一个完整的循环。</p>
+<p>后续如果再做第二第三个版本，就是只需要：</p>
+<ul>
+<li>修改内容用 atom</li>
+<li>git add -A</li>
+<li>git commit -m”msg”</li>
+</ul>
+<p>即可。</p>
+<blockquote>
+<p>注意：一个项目中 git init 只需要执行一次就可以了。</p>
+</blockquote>
+<h2 id="查看改版历史"><a href="#查看改版历史" class="headerlink" title="查看改版历史"></a>查看改版历史</h2><p>改版历史（所有我们做过的版本组成的一条线，就叫历史）中，会包含多个版本。每个版本中起码要包含4个 W （ Who When What Why ）。</p>
+<p>那么如何来查看改版历史呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log -p</div></pre></td></tr></table></figure>
+<p><code>log</code> 是日志的意思。<code>-p</code> 是 patch （补丁，也就是修改内容）的缩写。</p>
+<p>小技巧：<code>q</code> 可以退出 <code>git log -p</code> 的界面，敲 <code>j</code> 可以往下翻，敲 <code>k</code> 可以往上翻。</p>
+<blockquote>
+<p>注意，实际中 Peter 查看版本历史从来不用 git log 命令，而是使用一个前端工具叫做 tig 。安装和使用方式可以参考：<a href="http://www.haoduoshipin.com/v/49.html" target="_blank" rel="external">http://www.haoduoshipin.com/v/49.html</a></p>
+</blockquote>
+<h2 id="忽略特定文件或者文件夹"><a href="#忽略特定文件或者文件夹" class="headerlink" title="忽略特定文件或者文件夹"></a>忽略特定文件或者文件夹</h2><p>有时候，项目文件夹中有一些文件或者文件夹，并不是我们写的代码，例如 node_modules 。那么我们就没有必要把它们进行版本控制，这样我们可以吧这个文件或者文件夹的名字添加到，项目文件夹内的一个特殊文件，叫做 .gitignore 中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd project/</div><div class="line">atom .gitignore</div></pre></td></tr></table></figure>
+<p>然后，.gitignore 中填写如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node_modules</div></pre></td></tr></table></figure>
+<p>这样，git 就会忽略 node_modules 文件夹，以及里面的所有文件了。</p>
+<p>没有 .gitignore 的技巧，我们就会把 node_modules 中的文件也进行版本控制，这样带来两个明显不爽的现象：</p>
+<ul>
+<li>版本历史混乱</li>
+<li>git push 到 github.com 就会很慢</li>
+</ul>
+<p>所以，我们需要学习 .gitignore 的配置技巧。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这样，我们就学会了如何在本地创建 git <strong>版本</strong>，查看各个<strong>版本</strong> ，下面一节我们来研究如何把本地的这些<strong>版本</strong>上传到 github.com 。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GIT/" rel="tag"># GIT</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/01/3-file-man/" rel="next" title="文件操作">
+                <i class="fa fa-chevron-left"></i> 文件操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/01/2-let/" rel="prev" title="let">
+                let <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460"
+               alt="小u" />
+          <p class="site-author-name" itemprop="name">小u</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wentoos" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      豆瓣
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-本地工作流"><span class="nav-number">1.</span> <span class="nav-text">Git 本地工作流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下面来走一个-Git-本地工作流的-Demo"><span class="nav-number">1.1.</span> <span class="nav-text">下面来走一个 Git 本地工作流的 Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看改版历史"><span class="nav-number">1.2.</span> <span class="nav-text">查看改版历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忽略特定文件或者文件夹"><span class="nav-number">1.3.</span> <span class="nav-text">忽略特定文件或者文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小u</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

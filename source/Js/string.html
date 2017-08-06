@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="string 字符串String 全局对象是一个用于字符串或一个字符序列的构造函数。 语法1234let str=&quot;string text&quot;let str1=&quot;中文/汉语&quot;let str2=new String(str)//返回值：&amp;#123;0: &quot;s&quot;, 1: &quot;t&quot;, 2: &quot;r&quot;, 3: &quot;i&quot;, 4: &quot;n&quot;, 5: &quot;g&quot;, 6: &quot; &quot;, 7: &quot;t&quot;, 8: &quot;e&quot;, 9: &quot;x&quot;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="String">
+<meta property="og:url" content="http://yoursite.com/source/Js/string.html">
+<meta property="og:site_name" content="小u Notes">
+<meta property="og:description" content="string 字符串String 全局对象是一个用于字符串或一个字符序列的构造函数。 语法1234let str=&quot;string text&quot;let str1=&quot;中文/汉语&quot;let str2=new String(str)//返回值：&amp;#123;0: &quot;s&quot;, 1: &quot;t&quot;, 2: &quot;r&quot;, 3: &quot;i&quot;, 4: &quot;n&quot;, 5: &quot;g&quot;, 6: &quot; &quot;, 7: &quot;t&quot;, 8: &quot;e&quot;, 9: &quot;x&quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-06T14:58:58.973Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="String">
+<meta name="twitter:description" content="string 字符串String 全局对象是一个用于字符串或一个字符序列的构造函数。 语法1234let str=&quot;string text&quot;let str1=&quot;中文/汉语&quot;let str2=new String(str)//返回值：&amp;#123;0: &quot;s&quot;, 1: &quot;t&quot;, 2: &quot;r&quot;, 3: &quot;i&quot;, 4: &quot;n&quot;, 5: &quot;g&quot;, 6: &quot; &quot;, 7: &quot;t&quot;, 8: &quot;e&quot;, 9: &quot;x&quot;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/source/Js/string.html"/>
+
+
+
+
+
+  <title>String | 小u Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小u Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">String</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="string-字符串"><a href="#string-字符串" class="headerlink" title="string 字符串"></a>string 字符串</h1><p>String 全局对象是一个用于字符串或一个字符序列的构造函数。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> str=<span class="string">"string text"</span></div><div class="line"><span class="keyword">let</span> str1=<span class="string">"中文/汉语"</span></div><div class="line"><span class="keyword">let</span> str2=<span class="keyword">new</span> <span class="built_in">String</span>(str)</div><div class="line"><span class="comment">//返回值：&#123;0: "s", 1: "t", 2: "r", 3: "i", 4: "n", 5: "g", 6: " ", 7: "t", 8: "e", 9: "x", 10: "t", length: 11, [[PrimitiveValue]]: "string text"&#125;</span></div></pre></td></tr></table></figure>
+<p><strong>注意</strong> 通过new，它返回一个新创建的 String 对象，存放的是字符串 str2 或 str2 的字符串表示<br>当不用 new  时，它只把 str 转换成原始的字符串，指向这个string，并返回转换后的值。</p>
+<p><strong>还有从es6开始</strong> 可以用字符串模板书写<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> str=<span class="string">`string text`</span></div><div class="line"><span class="keyword">let</span> str1=<span class="string">`中文/汉语`</span></div></pre></td></tr></table></figure></p>
+<p><em>书写时可能碰到特别长的字符串</em> 可以用字符串拼接书写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> longString = <span class="string">"This is a very long string which needs "</span> +</div><div class="line">                 <span class="string">"to wrap across multiple lines because "</span> +</div><div class="line">                 <span class="string">"otherwise my code is unreadable."</span>;</div></pre></td></tr></table></figure>
+<p><em>或者</em> 使用 <code>\</code> 在每行末尾使用反斜杠字符 <code>\</code>，以指示字符串将在下一行继续。确保反斜杠后面没有空格或任何除换行符之外的字符或缩进; 否则反斜杠将不会工作。 如下所示：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> longString = <span class="string">"This is a very long string which needs \</span></div><div class="line"><span class="string">to wrap across multiple lines because \</span></div><div class="line"><span class="string">otherwise my code is unreadable."</span>;</div></pre></td></tr></table></figure></p>
+<h2 id="String-属性"><a href="#String-属性" class="headerlink" title="String 属性"></a>String 属性</h2><h3 id="String-prototype"><a href="#String-prototype" class="headerlink" title="String.prototype"></a>String.prototype</h3><p>String.prototype 属性表示 String原型对象。可以使用 String.prototype.constructor 用于创造对象的原型对象的特定的函数。</p>
+<h3 id="String-length"><a href="#String-length" class="headerlink" title="String.length"></a>String.length</h3><p>length属性表示返回字符串长度<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> str =<span class="string">'wentoos'</span></div><div class="line">str.length<span class="comment">// 返回值：7</span></div></pre></td></tr></table></figure></p>
+<h2 id="String-方法"><a href="#String-方法" class="headerlink" title="String 方法"></a>String 方法</h2><p>常用的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">charAt()</div><div class="line"><span class="comment">//返回在指定位置的字符。</span></div><div class="line">concat()</div><div class="line"><span class="comment">//连接字符串。</span></div><div class="line">indexOf()</div><div class="line"><span class="comment">//检索字符串。</span></div><div class="line">lastIndexOf()</div><div class="line"><span class="comment">//从后向前搜索字符串。</span></div><div class="line">match()</div><div class="line"><span class="comment">//找到一个或多个正则表达式的匹配。</span></div><div class="line">replace()</div><div class="line"><span class="comment">//替换与正则表达式匹配的子串。</span></div><div class="line">search()</div><div class="line"><span class="comment">//检索与正则表达式相匹配的值。</span></div><div class="line">slice()</div><div class="line"><span class="comment">//提取字符串的片断，并在新的字符串中返回被提取的部分。</span></div><div class="line">small()</div><div class="line"><span class="comment">//使用小字号来显示字符串。</span></div><div class="line">split()</div><div class="line"><span class="comment">//把字符串分割为字符串数组。</span></div><div class="line">toString()</div><div class="line"><span class="comment">//返回字符串。</span></div><div class="line">sub()</div><div class="line"><span class="comment">//把字符串显示为下标。</span></div><div class="line">substr()</div><div class="line"><span class="comment">//从起始索引号提取字符串中指定数目的字符。</span></div><div class="line">substring()</div><div class="line"><span class="comment">//提取字符串中两个指定的索引号之间的字符。</span></div><div class="line">toLocaleLowerCase()</div><div class="line"><span class="comment">//把字符串转换为小写。</span></div><div class="line">toLocaleUpperCase()</div><div class="line"><span class="comment">//把字符串转换为大写。</span></div><div class="line">toLowerCase()</div><div class="line"><span class="comment">//把字符串转换为小写。</span></div><div class="line">toUpperCase()</div><div class="line"><span class="comment">//把字符串转换为大写。</span></div></pre></td></tr></table></figure></p>
+<p>不常用的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">toSource()</div><div class="line"><span class="comment">//代表对象的源代码。</span></div><div class="line">valueOf()</div><div class="line"><span class="comment">//返回某个字符串对象的原始值。</span></div><div class="line">anchor()</div><div class="line"><span class="comment">//创建 HTML 锚。</span></div><div class="line">big()</div><div class="line"><span class="comment">//用大号字体显示字符串。</span></div><div class="line">blink()</div><div class="line"><span class="comment">//显示闪动字符串。</span></div><div class="line">bold()</div><div class="line"><span class="comment">//使用粗体显示字符串。</span></div><div class="line">charCodeAt()</div><div class="line"><span class="comment">//返回在指定的位置的字符的 Unicode 编码。</span></div><div class="line">fixed()</div><div class="line"><span class="comment">//以打字机文本显示字符串。</span></div><div class="line">fontcolor()</div><div class="line"><span class="comment">//使用指定的颜色来显示字符串。</span></div><div class="line">fontsize()</div><div class="line"><span class="comment">//使用指定的尺寸来显示字符串。</span></div><div class="line">fromCharCode()</div><div class="line"><span class="comment">//从字符编码创建一个字符串。</span></div><div class="line">italics()</div><div class="line"><span class="comment">//使用斜体显示字符串。</span></div><div class="line">link()</div><div class="line"><span class="comment">//将字符串显示为链接。</span></div><div class="line">localeCompare()</div><div class="line"><span class="comment">//用本地特定的顺序来比较两个字符串。</span></div><div class="line">strike()</div><div class="line"><span class="comment">//使用删除线来显示字符串。</span></div></pre></td></tr></table></figure></p>
+<p><a href="http://www.w3school.com.cn/jsref/jsref_obj_string.asp" target="_blank" rel="external">详细介绍使用方法请到W3c</a></p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460"
+               alt="小u" />
+          <p class="site-author-name" itemprop="name">小u</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wentoos" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      豆瓣
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#string-字符串"><span class="nav-number">1.</span> <span class="nav-text">string 字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-属性"><span class="nav-number">1.2.</span> <span class="nav-text">String 属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String-prototype"><span class="nav-number">1.2.1.</span> <span class="nav-text">String.prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-length"><span class="nav-number">1.2.2.</span> <span class="nav-text">String.length</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-方法"><span class="nav-number">1.3.</span> <span class="nav-text">String 方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小u</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

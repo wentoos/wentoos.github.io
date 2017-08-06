@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="数组的解构赋值ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。 1let [a, b, c] = [1, 2, 3] 上面代码表示，可以从数组中提取值，按照对应位置，对变量赋值。 注意 let数组里的值，可以是数字、变量、对象、函数等、但无法拿到空格占位。 12let [a,b,c,d,,] = [1,&quot;aaa&quot;,&amp;#123;name:">
+<meta property="og:type" content="website">
+<meta property="og:title" content="变量的解构赋值">
+<meta property="og:url" content="http://yoursite.com/source/ES6/4-Destructuring.html">
+<meta property="og:site_name" content="小u Notes">
+<meta property="og:description" content="数组的解构赋值ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。 1let [a, b, c] = [1, 2, 3] 上面代码表示，可以从数组中提取值，按照对应位置，对变量赋值。 注意 let数组里的值，可以是数字、变量、对象、函数等、但无法拿到空格占位。 12let [a,b,c,d,,] = [1,&quot;aaa&quot;,&amp;#123;name:">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-06T14:58:59.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="变量的解构赋值">
+<meta name="twitter:description" content="数组的解构赋值ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。 1let [a, b, c] = [1, 2, 3] 上面代码表示，可以从数组中提取值，按照对应位置，对变量赋值。 注意 let数组里的值，可以是数字、变量、对象、函数等、但无法拿到空格占位。 12let [a,b,c,d,,] = [1,&quot;aaa&quot;,&amp;#123;name:">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/source/ES6/4-Destructuring.html"/>
+
+
+
+
+
+  <title>变量的解构赋值 | 小u Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小u Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">变量的解构赋值</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <!-- toc -->
+<h1 id="数组的解构赋值"><a href="#数组的解构赋值" class="headerlink" title="数组的解构赋值"></a>数组的解构赋值</h1><p>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let [a, b, c] = [1, 2, 3]</div></pre></td></tr></table></figure>
+<p>上面代码表示，可以从数组中提取值，按照对应位置，对变量赋值。</p>
+<p><strong>注意</strong> let数组里的值，可以是数字、变量、对象、函数等、但无法拿到空格占位。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> [a,b,c,d,,] = [<span class="number">1</span>,<span class="string">"aaa"</span>,&#123;<span class="attr">name</span>:<span class="string">'sayname'</span>&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;];</div><div class="line"><span class="built_in">console</span>.log(a,b,c,d);</div></pre></td></tr></table></figure>
+<h2 id="Rest-参数"><a href="#Rest-参数" class="headerlink" title="Rest 参数"></a><strong>Rest</strong> 参数</h2><ul>
+<li>rest参数只包括那些没有给出名称的参数，arguments包含所有参数；</li>
+<li>arguments对象不是真正的array，而rest参数是Array的实例，可以直接应用sort, map, forEach, pop等方法；</li>
+<li>arguments对象拥有一些自己额外的功能。</li>
+</ul>
+<p>Rest参数接收函数的多余参数，组成一个数组，放在形参的最后，形式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function func(a, b, ...theArgs) &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>例：剩余参数数组里值的和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var sum = (a,...rest) =&gt; &#123;</div><div class="line">let rests = 0</div><div class="line">for(let i=0;i&lt;rest.length;i++)&#123;</div><div class="line">    if( isNaN(Number(rest[i])) )&#123;continue&#125;</div><div class="line">        rests += Number(rest[i]) ;        </div><div class="line">&#125;</div><div class="line">//continue（继续）</div><div class="line">return rests</div><div class="line">&#125;</div><div class="line">console.log(`输出：$&#123;rests&#125;`)</div></pre></td></tr></table></figure>
+<h2 id="数组的扩展用-…-展开"><a href="#数组的扩展用-…-展开" class="headerlink" title="数组的扩展用 … 展开"></a>数组的扩展用 <strong>…</strong> 展开</h2><p>例子：连接两个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let arr1 = [1,2,3,4]</div><div class="line">let arr2 = [5,6,7,8]</div><div class="line">//ES5写法：var arr = arr1.concat(arr2,[9])</div><div class="line">var arr = [...arr1,...arr2,9]</div><div class="line">console.log(arr)</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>，ES6 内部使用严格相等运算符（===），判断一个位置是否有值。所以，如果一个数组成员不严格等于undefined，默认值是不会生效的。</p>
+<h2 id="对象的解构赋值"><a href="#对象的解构赋值" class="headerlink" title="对象的解构赋值"></a>对象的解构赋值</h2><p>对象的解构与数组有一个重要的不同。数组的元素是按次序排列的，变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。如果变量名与属性名不一致，必须写成下面这样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var &#123; foo: baz &#125; = &#123; foo: &apos;aaa&apos;, bar: &apos;bbb&apos; &#125;;</div><div class="line">baz // &quot;aaa&quot;</div><div class="line"></div><div class="line">let obj = &#123; first: &apos;hello&apos;, last: &apos;world&apos; &#125;;</div><div class="line">let &#123; first: f, last: l &#125; = obj;</div><div class="line">f // &apos;hello&apos;</div><div class="line">l // &apos;world&apos;</div></pre></td></tr></table></figure>
+<p>例子：利用对象解构赋值变量取属性同名的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//父组件</div><div class="line">&lt;Modal title=&apos;标题&apos; cancelText=&apos;取消&apos; okText=&apos;确定&apos; show=&#123;this.state.show&#125; onShow=&#123;this.handleClick&#125;  &gt;</div><div class="line">                    &lt;p&gt;Some contents...&lt;/p&gt;</div><div class="line">                    &lt;p&gt;Some contents...&lt;/p&gt;</div><div class="line">                    &lt;p&gt;Some contents...&lt;/p&gt;</div><div class="line">                    &lt;p&gt;Some contents...&lt;/p&gt;</div><div class="line">                &lt;/Modal&gt;</div><div class="line">子组件想拿到父组件里的同名属性</div><div class="line">let &#123;title,children,cancelText,okText&#125; = this.props</div><div class="line">//等同于声明一个变量等于this.props下的同名属性</div><div class="line">//let title = this.props.title等等</div><div class="line">//下面使用时不用再写this.props.title可以代替直接用title代替</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let hello = (&#123;name,age&#125;) =&gt; (</div><div class="line">	console.log(`my name:$&#123;name&#125;,age:$&#123;age&#125;`)</div><div class="line">)</div><div class="line">hello(&#123;name:&apos;Liu&apos;,age:&apos;24&apos;&#125;)</div></pre></td></tr></table></figure>
+<h3 id="对象的解构赋值是下面形式的简写"><a href="#对象的解构赋值是下面形式的简写" class="headerlink" title="对象的解构赋值是下面形式的简写"></a>对象的解构赋值是下面形式的简写</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let &#123; foo: foo, bar: bar &#125; = &#123; foo: &quot;aaa&quot;, bar: &quot;bbb&quot; &#125;;</div><div class="line">//简写形式：let&#123;foo,bar&#125;=&#123;foo: &quot;aaa&quot;, bar: &quot;bbb&quot;&#125;</div></pre></td></tr></table></figure>
+<p>将obj中的对象foo赋值给一个变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let obj = &#123;bar:&apos;bbb&apos;,foo:&apos;aaa&apos;,name:&apos;sayname&apos;&#125;;</div><div class="line">let &#123;foo&#125; = obj;</div><div class="line">console.log(foo);</div><div class="line">var foo = obj.foo;</div></pre></td></tr></table></figure>
+<h2 id="字符串的解构赋值"><a href="#字符串的解构赋值" class="headerlink" title="字符串的解构赋值"></a>字符串的解构赋值</h2><p>按字符串下标赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const [a, b, c, d, e] = &apos;hello&apos;;</div><div class="line">a // &quot;h&quot;</div><div class="line">b // &quot;e&quot;</div><div class="line">c // &quot;l&quot;</div><div class="line">d // &quot;l&quot;</div><div class="line">e // &quot;o&quot;</div></pre></td></tr></table></figure>
+<p>类似数组的对象都有一个length属性，因此还可以对这个属性解构赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let &#123;length : len&#125; = &apos;hello&apos;;</div><div class="line">len // 5</div></pre></td></tr></table></figure>
+<h2 id="对象的结构赋值："><a href="#对象的结构赋值：" class="headerlink" title="对象的结构赋值："></a>对象的结构赋值：</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> name = <span class="string">'liuenqing'</span>;</div><div class="line"><span class="keyword">let</span> age = <span class="number">22</span>;</div><div class="line"><span class="keyword">let</span> say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">1</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> obj = &#123;</div><div class="line">	name,</div><div class="line">	age,</div><div class="line">	say,</div><div class="line">	run()&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'run'</span>)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(obj)</div></pre></td></tr></table></figure>
+<h2 id="对象的扩展（合并）"><a href="#对象的扩展（合并）" class="headerlink" title="对象的扩展（合并）"></a>对象的扩展（合并）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let obj1 = &#123;name:&apos;Liu&apos;&#125;</div><div class="line">let obj2 = &#123;age:&apos;24&apos;,Gender:&apos;man&apos;&#125;</div><div class="line">Object.Assign(&#123;&#125;,obj1,obj2)</div><div class="line">//必须都为对象</div><div class="line">//obj.name会对name的值进行字符串解构</div></pre></td></tr></table></figure>
+<p>更为强大的 <strong>…</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let obj1 = &#123;name:&apos;Liu&apos;&#125;</div><div class="line">let obj2 = &#123;age:&apos;24&apos;,Gender:&apos;man&apos;&#125;</div><div class="line">var obj = &#123;...obj1,...obj2,say()&#123;&#125;&#125;</div><div class="line">console.log(obj)</div></pre></td></tr></table></figure>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460"
+               alt="小u" />
+          <p class="site-author-name" itemprop="name">小u</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wentoos" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      豆瓣
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的解构赋值"><span class="nav-number">1.</span> <span class="nav-text">数组的解构赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rest-参数"><span class="nav-number">1.1.</span> <span class="nav-text">Rest 参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的扩展用-…-展开"><span class="nav-number">1.2.</span> <span class="nav-text">数组的扩展用 … 展开</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的解构赋值"><span class="nav-number">1.3.</span> <span class="nav-text">对象的解构赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的解构赋值是下面形式的简写"><span class="nav-number">1.3.1.</span> <span class="nav-text">对象的解构赋值是下面形式的简写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的解构赋值"><span class="nav-number">1.4.</span> <span class="nav-text">字符串的解构赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的结构赋值："><span class="nav-number">1.5.</span> <span class="nav-text">对象的结构赋值：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的扩展（合并）"><span class="nav-number">1.6.</span> <span class="nav-text">对象的扩展（合并）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小u</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

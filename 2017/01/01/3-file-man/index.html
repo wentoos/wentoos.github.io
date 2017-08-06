@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux,文件操作," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="linux 文件操作文件操作也包括文件夹操作（ Linux 系统下万物皆文件）。主要涉及：  文件创建：atom/touch 文件夹创建： mkdir 文件夹删除：rm -r folder 文件移动： mv file ../ 文件删除： rm file  创建文件或者文件夹文件夹1mkdir project 注意：创建的位置要在用户主目录内部，不然会遇到权限不够的问题。 进入这个项目文件夹 1c">
+<meta name="keywords" content="Linux,文件操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件操作">
+<meta property="og:url" content="http://yoursite.com/2017/01/01/3-file-man/index.html">
+<meta property="og:site_name" content="小u Notes">
+<meta property="og:description" content="linux 文件操作文件操作也包括文件夹操作（ Linux 系统下万物皆文件）。主要涉及：  文件创建：atom/touch 文件夹创建： mkdir 文件夹删除：rm -r folder 文件移动： mv file ../ 文件删除： rm file  创建文件或者文件夹文件夹1mkdir project 注意：创建的位置要在用户主目录内部，不然会遇到权限不够的问题。 进入这个项目文件夹 1c">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-06T15:21:08.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件操作">
+<meta name="twitter:description" content="linux 文件操作文件操作也包括文件夹操作（ Linux 系统下万物皆文件）。主要涉及：  文件创建：atom/touch 文件夹创建： mkdir 文件夹删除：rm -r folder 文件移动： mv file ../ 文件删除： rm file  创建文件或者文件夹文件夹1mkdir project 注意：创建的位置要在用户主目录内部，不然会遇到权限不够的问题。 进入这个项目文件夹 1c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/01/3-file-man/"/>
+
+
+
+
+
+  <title>文件操作 | 小u Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小u Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/01/3-file-man/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小u">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小u Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">文件操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-01T14:54:33+00:00">
+                2017-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- toc -->
+<h1 id="linux-文件操作"><a href="#linux-文件操作" class="headerlink" title="linux 文件操作"></a>linux 文件操作</h1><p>文件操作也包括文件夹操作（ Linux 系统下万物皆文件）。主要涉及：</p>
+<ul>
+<li>文件创建：atom/touch</li>
+<li>文件夹创建： mkdir</li>
+<li>文件夹删除：rm -r folder</li>
+<li>文件移动： mv file ../</li>
+<li>文件删除： rm file</li>
+</ul>
+<h2 id="创建文件或者文件夹"><a href="#创建文件或者文件夹" class="headerlink" title="创建文件或者文件夹"></a>创建文件或者文件夹</h2><h3 id="文件夹"><a href="#文件夹" class="headerlink" title="文件夹"></a>文件夹</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir project</div></pre></td></tr></table></figure>
+<p>注意：创建的位置要在用户主目录内部，不然会遇到<strong>权限</strong>不够的问题。</p>
+<p>进入这个项目文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd project</div></pre></td></tr></table></figure>
+<p>这样，<strong>当前文件夹</strong> 就切换到了 project 之内。</p>
+<p>插播一个小技巧：可以用 <code>pwd</code> （ Print Working Directory 打印当前文件夹）来显示精确的位置。</p>
+<h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch fileName</div></pre></td></tr></table></figure>
+<p>注意：Windows 系统上，一般文件都是要有后缀，但是 Linux 下没有这个要求。</p>
+<p>但是，一般我们都是用 atom 编辑器来创建文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">atom .</div></pre></td></tr></table></figure>
+<p>注：<code>.</code> 代表当前位置（当前文件夹）。</p>
+<h2 id="删除文件或者文件夹"><a href="#删除文件或者文件夹" class="headerlink" title="删除文件或者文件夹"></a>删除文件或者文件夹</h2><h3 id="删除一个文件"><a href="#删除一个文件" class="headerlink" title="删除一个文件"></a>删除一个文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm fileName</div></pre></td></tr></table></figure>
+<h3 id="删除一个文件夹"><a href="#删除一个文件夹" class="headerlink" title="删除一个文件夹"></a>删除一个文件夹</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -r folderName</div></pre></td></tr></table></figure>
+<h2 id="移动修改操作文件或文件夹"><a href="#移动修改操作文件或文件夹" class="headerlink" title="移动修改操作文件或文件夹"></a>移动修改操作文件或文件夹</h2><h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><p>移动用到的是 <code>mv</code> 命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv 被移动的文件或者文件夹的路径  目标文件夹位置</div></pre></td></tr></table></figure>
+<h3 id="重命名"><a href="#重命名" class="headerlink" title="重命名"></a>重命名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv 被移动的文件或者文件夹的路径  不存在的位置/文件名</div></pre></td></tr></table></figure>
+<p>这样进行的就是原来文件的重命名操作。</p>
+<h3 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h3><p>用 <code>cp</code> 这个命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp 被拷贝的的文件  目标位置</div></pre></td></tr></table></figure>
+<h3 id="拷贝文件夹"><a href="#拷贝文件夹" class="headerlink" title="拷贝文件夹"></a>拷贝文件夹</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp -r 被拷贝的的文件夹 目标位置</div></pre></td></tr></table></figure>
+<h3 id="操作案例"><a href="#操作案例" class="headerlink" title="操作案例"></a>操作案例</h3><p>把 aaa/ 文件夹中的所有文件，都拷贝到 bbb 文件夹中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ ls aaa</div><div class="line">aa bb cc</div><div class="line">$ ls bbb</div><div class="line">$ mv  aaa/* bbb</div><div class="line">$ ls aaa</div><div class="line">$ ls bbb</div><div class="line">aa bb cc</div></pre></td></tr></table></figure>
+<h2 id="普通用户和超级用户（文件的管理权限）"><a href="#普通用户和超级用户（文件的管理权限）" class="headerlink" title="普通用户和超级用户（文件的管理权限）"></a>普通用户和超级用户（文件的管理权限）</h2><p>普通用户就是我们默认登录用户，例如 wentoos 。超级用户就是管理员。普通用户可以化身超级用户。这个化身的方式是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo rm fileName</div></pre></td></tr></table></figure>
+<p>上面的命令可以用超级用户权限来执行一个命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo su</div></pre></td></tr></table></figure>
+<p>可以直接化身超级用户。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo su</div><div class="line">$ whoami</div><div class="line">root</div><div class="line">$ exit</div><div class="line">$ whoami</div><div class="line">Liu</div></pre></td></tr></table></figure>
+<p>上面 root 就是所谓的超级用户。<code>whoami</code> 打印出当前用户的用户名。<br>超级用户，退出成普通用户，敲 Ctrl-D 。</p>
+<blockquote>
+<p>注意，sudo 操作需要输入密码，输入的就是 wentoos 这个用户的密码，同时，输入密码的时候光标不会移动，这个是正常现象，只管输入，然后回车就可以了</p>
+</blockquote>
+<p>总结一下，了解了文件系统结构，了解各类文件操作（ rm mv cp ），再加上 sudo 的使用，那么一个开发者的基本命令行使用能力就有了。那么我们课程的命令行入门部分就可以告一段落。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/文件操作/" rel="tag"># 文件操作</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/01/2-file-sys/" rel="next" title="文件系统结构">
+                <i class="fa fa-chevron-left"></i> 文件系统结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/01/8-local-git/" rel="prev" title="Git 本地工作流">
+                Git 本地工作流 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460"
+               alt="小u" />
+          <p class="site-author-name" itemprop="name">小u</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wentoos" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      豆瓣
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux-文件操作"><span class="nav-number">1.</span> <span class="nav-text">linux 文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建文件或者文件夹"><span class="nav-number">1.1.</span> <span class="nav-text">创建文件或者文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件夹"><span class="nav-number">1.1.1.</span> <span class="nav-text">文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件"><span class="nav-number">1.1.2.</span> <span class="nav-text">文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除文件或者文件夹"><span class="nav-number">1.2.</span> <span class="nav-text">删除文件或者文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除一个文件"><span class="nav-number">1.2.1.</span> <span class="nav-text">删除一个文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除一个文件夹"><span class="nav-number">1.2.2.</span> <span class="nav-text">删除一个文件夹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动修改操作文件或文件夹"><span class="nav-number">1.3.</span> <span class="nav-text">移动修改操作文件或文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#移动"><span class="nav-number">1.3.1.</span> <span class="nav-text">移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重命名"><span class="nav-number">1.3.2.</span> <span class="nav-text">重命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制粘贴"><span class="nav-number">1.3.3.</span> <span class="nav-text">复制粘贴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝文件夹"><span class="nav-number">1.3.4.</span> <span class="nav-text">拷贝文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作案例"><span class="nav-number">1.3.5.</span> <span class="nav-text">操作案例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通用户和超级用户（文件的管理权限）"><span class="nav-number">1.4.</span> <span class="nav-text">普通用户和超级用户（文件的管理权限）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小u</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

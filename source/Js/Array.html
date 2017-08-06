@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Array 对象啥是ArrayArray 对象用于在单个的变量中存储多个值。1let arr =[1,2,3] 创建 array 语法1234let arr =[&apos;arr&apos;,&apos;acc&apos;]let arr2=new Array(&apos;arr&apos;,&apos;acc&apos;)let arr2 = [];arr2[0] = 1; Array 属性Array.prototypeArray.prototype  属性表示 Arra">
+<meta property="og:type" content="website">
+<meta property="og:title" content="array">
+<meta property="og:url" content="http://yoursite.com/source/Js/Array.html">
+<meta property="og:site_name" content="小u Notes">
+<meta property="og:description" content="Array 对象啥是ArrayArray 对象用于在单个的变量中存储多个值。1let arr =[1,2,3] 创建 array 语法1234let arr =[&apos;arr&apos;,&apos;acc&apos;]let arr2=new Array(&apos;arr&apos;,&apos;acc&apos;)let arr2 = [];arr2[0] = 1; Array 属性Array.prototypeArray.prototype  属性表示 Arra">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-06T14:58:58.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="array">
+<meta name="twitter:description" content="Array 对象啥是ArrayArray 对象用于在单个的变量中存储多个值。1let arr =[1,2,3] 创建 array 语法1234let arr =[&apos;arr&apos;,&apos;acc&apos;]let arr2=new Array(&apos;arr&apos;,&apos;acc&apos;)let arr2 = [];arr2[0] = 1; Array 属性Array.prototypeArray.prototype  属性表示 Arra">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/source/Js/Array.html"/>
+
+
+
+
+
+  <title>array | 小u Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小u Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">array</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="Array-对象"><a href="#Array-对象" class="headerlink" title="Array 对象"></a>Array 对象</h1><h2 id="啥是Array"><a href="#啥是Array" class="headerlink" title="啥是Array"></a>啥是Array</h2><p>Array 对象用于在单个的变量中存储多个值。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div></pre></td></tr></table></figure></p>
+<h2 id="创建-array-语法"><a href="#创建-array-语法" class="headerlink" title="创建 array 语法"></a>创建 array 语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr =[<span class="string">'arr'</span>,<span class="string">'acc'</span>]</div><div class="line"><span class="keyword">let</span> arr2=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'arr'</span>,<span class="string">'acc'</span>)</div><div class="line"><span class="keyword">let</span> arr2 = [];</div><div class="line">arr2[<span class="number">0</span>] = <span class="number">1</span>;</div></pre></td></tr></table></figure>
+<h2 id="Array-属性"><a href="#Array-属性" class="headerlink" title="Array 属性"></a>Array 属性</h2><h3 id="Array-prototype"><a href="#Array-prototype" class="headerlink" title="Array.prototype"></a>Array.prototype</h3><p>Array.prototype  属性表示 Array 构造函数的原型，并允许您向所有Array对象添加新的属性和方法。</p>
+<h3 id="Array-length"><a href="#Array-length" class="headerlink" title="Array.length"></a>Array.length</h3><p>length属性表示返回Array长度<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> str =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">str.length<span class="comment">//返回值：3</span></div></pre></td></tr></table></figure></p>
+<h2 id="Array-方法"><a href="#Array-方法" class="headerlink" title="Array 方法"></a>Array 方法</h2><h3 id="Array-concat"><a href="#Array-concat" class="headerlink" title="Array.concat()"></a>Array.concat()</h3><p>合并数组并返回新的数组<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">var</span> arr1 = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</div><div class="line"><span class="keyword">var</span> arr2 = arr1.concat(arr);</div><div class="line"><span class="built_in">console</span>.log(arr2)</div><div class="line"><span class="built_in">console</span>.log(arr)</div><div class="line"><span class="built_in">console</span>.log(arr1)</div></pre></td></tr></table></figure></p>
+<h3 id="Array-reverse"><a href="#Array-reverse" class="headerlink" title="Array.reverse()"></a>Array.reverse()</h3><p>颠倒数组并返回新的数组（原数组已经改变）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line"><span class="keyword">var</span> arr1 = arr.reverse();</div><div class="line"><span class="built_in">console</span>.log(arr);</div><div class="line"><span class="built_in">console</span>.log(arr1);</div></pre></td></tr></table></figure></p>
+<p>判断一个数是否为回文数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//例如：123321</span></div><div class="line"><span class="keyword">let</span> num =<span class="string">'123321'</span>;</div><div class="line"><span class="keyword">let</span> arr =num.split(<span class="string">''</span>)</div><div class="line"><span class="keyword">let</span> arr1 =arr.reverse()</div><div class="line"><span class="built_in">console</span>.log(arr===arr1);</div></pre></td></tr></table></figure></p>
+<h3 id="Array-pop"><a href="#Array-pop" class="headerlink" title="Array.pop()"></a>Array.pop()</h3><p>删除并返回数组的最后一个元素<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>];</div><div class="line"><span class="keyword">var</span> num = arr.pop();</div><div class="line"><span class="built_in">console</span>.log(arr);</div><div class="line"><span class="comment">//[1,2,3,4]</span></div><div class="line"><span class="built_in">console</span>.log(num);</div><div class="line"><span class="comment">//6</span></div></pre></td></tr></table></figure></p>
+<h3 id="Array-shift"><a href="#Array-shift" class="headerlink" title="Array.shift()"></a>Array.shift()</h3><p>删除并返回数组的第一个元素<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>];</div><div class="line"><span class="keyword">var</span> num1 = arr.shift();</div><div class="line"><span class="built_in">console</span>.log(arr);</div><div class="line"><span class="comment">//[2,3,4,6]</span></div><div class="line"><span class="built_in">console</span>.log(num1);</div><div class="line"><span class="comment">//1</span></div></pre></td></tr></table></figure></p>
+<h3 id="Array-push"><a href="#Array-push" class="headerlink" title="Array.push()"></a>Array.push()</h3><p>向数组最后面添加一个或多个元素返回新数组的长度<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>];</div><div class="line"><span class="keyword">var</span> num2 = arr.push(<span class="number">6</span>,<span class="number">6</span>)</div><div class="line"><span class="built_in">console</span>.log(arr);</div><div class="line"><span class="comment">//[1,2,3,4,6,6,6]</span></div><div class="line"><span class="built_in">console</span>.log(num2);]</div><div class="line"><span class="comment">// 7</span></div></pre></td></tr></table></figure></p>
+<p>push(a,b,c)  abc 要添加的元素，必有一个</p>
+<h3 id="Array-unshift"><a href="#Array-unshift" class="headerlink" title="Array.unshift()"></a>Array.unshift()</h3><p>向数组最前面添加一个或多个元素返回新数组的长度<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>];</div><div class="line"><span class="keyword">var</span> num3 = arr.unshift(<span class="number">1</span>);</div><div class="line"><span class="built_in">console</span>.log(arr)</div><div class="line"><span class="comment">//[1,1,2,3,4,6]</span></div><div class="line"><span class="built_in">console</span>.log(num3)</div><div class="line"><span class="comment">//6</span></div></pre></td></tr></table></figure></p>
+<h3 id="Array-splice-a-b-c"><a href="#Array-splice-a-b-c" class="headerlink" title="Array.splice(a,b,c)"></a>Array.splice(a,b,c)</h3><p>a 代表删除或者添加的位置（数组的下标） b 删除的个数 c 代表添加的内容  添加或删除元素并返回删除的数组<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>];</div><div class="line"><span class="keyword">var</span> num4 = arr.splice(<span class="number">2</span>,<span class="number">2</span>,<span class="number">56</span>)</div><div class="line"><span class="built_in">console</span>.log(arr)</div><div class="line"><span class="comment">//[1,2,56,6]</span></div><div class="line"><span class="built_in">console</span>.log(num4)</div><div class="line"><span class="comment">//[3,4]</span></div></pre></td></tr></table></figure></p>
+<h3 id="Array-slice-a-b"><a href="#Array-slice-a-b" class="headerlink" title="Array.slice(a,b)"></a>Array.slice(a,b)</h3><p>截取数组 a-b(数组下标) 包括a 不包括 b 并返回被截取数组<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>];</div><div class="line"><span class="keyword">var</span> num5 = arr.slice(<span class="number">1</span>,<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(arr)</div><div class="line"><span class="comment">//[1,2,3,4,6]</span></div><div class="line"><span class="built_in">console</span>.log(num5)</div><div class="line"><span class="comment">//[1,2,3]</span></div></pre></td></tr></table></figure></p>
+<h3 id="Array-sort"><a href="#Array-sort" class="headerlink" title="Array.sort()"></a>Array.sort()</h3><p>数组排序<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> newArr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">33</span>,<span class="number">22</span>,<span class="number">11</span>,<span class="number">55</span>,<span class="number">22</span>];</div><div class="line"><span class="keyword">var</span> newStr = [<span class="string">"eee"</span>,<span class="string">"sjhgk"</span>,<span class="string">"uytjl"</span>,<span class="string">"a"</span>,<span class="string">"c"</span>,<span class="string">"b"</span>];</div><div class="line">newArr.sort();</div><div class="line"><span class="built_in">console</span>.log(newArr);  </div><div class="line">newStr.sort();</div><div class="line"><span class="built_in">console</span>.log(newStr)</div><div class="line"><span class="keyword">var</span> c = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> b-a&#125;;</div><div class="line">newArr.sort(c);</div><div class="line"><span class="built_in">console</span>.log(newArr);</div></pre></td></tr></table></figure></p>
+<p>使用sort排序时，如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序。如达到按照值的大小排列时，必须给sort方法传一个函数，这样才能真正的排序：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> c = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> b-a&#125; || <span class="keyword">var</span> c = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> a-b&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>参数a,b：</strong> b-a 倒序  a-b 正序</p>
+<h3 id="Array-join-a"><a href="#Array-join-a" class="headerlink" title="Array.join(a)"></a>Array.join(a)</h3><p>把数组转化为字符串  a:链接数组每一项的字符串<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> newArr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">33</span>,<span class="number">22</span>,<span class="number">11</span>,<span class="number">55</span>,<span class="number">22</span>];</div><div class="line"><span class="keyword">var</span> str = newArr.join(<span class="string">"+"</span>);</div><div class="line"><span class="built_in">console</span>.log(newArr);</div><div class="line"><span class="comment">// [2, 3, 1, 2, 4, 33, 22, 11, 55, 22]</span></div><div class="line"><span class="built_in">console</span>.log(str);</div><div class="line"><span class="comment">// 2+3+1+2+4+33+22+11+55+22</span></div></pre></td></tr></table></figure></p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/27837972?v=4&s=460"
+               alt="小u" />
+          <p class="site-author-name" itemprop="name">小u</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wentoos" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      豆瓣
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Array-对象"><span class="nav-number">1.</span> <span class="nav-text">Array 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啥是Array"><span class="nav-number">1.1.</span> <span class="nav-text">啥是Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-array-语法"><span class="nav-number">1.2.</span> <span class="nav-text">创建 array 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-属性"><span class="nav-number">1.3.</span> <span class="nav-text">Array 属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-prototype"><span class="nav-number">1.3.1.</span> <span class="nav-text">Array.prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-length"><span class="nav-number">1.3.2.</span> <span class="nav-text">Array.length</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-方法"><span class="nav-number">1.4.</span> <span class="nav-text">Array 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-concat"><span class="nav-number">1.4.1.</span> <span class="nav-text">Array.concat()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-reverse"><span class="nav-number">1.4.2.</span> <span class="nav-text">Array.reverse()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-pop"><span class="nav-number">1.4.3.</span> <span class="nav-text">Array.pop()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-shift"><span class="nav-number">1.4.4.</span> <span class="nav-text">Array.shift()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-push"><span class="nav-number">1.4.5.</span> <span class="nav-text">Array.push()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-unshift"><span class="nav-number">1.4.6.</span> <span class="nav-text">Array.unshift()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-splice-a-b-c"><span class="nav-number">1.4.7.</span> <span class="nav-text">Array.splice(a,b,c)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-slice-a-b"><span class="nav-number">1.4.8.</span> <span class="nav-text">Array.slice(a,b)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-sort"><span class="nav-number">1.4.9.</span> <span class="nav-text">Array.sort()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-join-a"><span class="nav-number">1.4.10.</span> <span class="nav-text">Array.join(a)</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小u</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
